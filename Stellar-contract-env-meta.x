@@ -11,13 +11,27 @@ namespace stellar
 
 enum SCEnvMetaKind
 {
-    SC_ENV_META_KIND_INTERFACE_VERSION = 0
+    SC_ENV_META_KIND_INTERFACE_VERSION = 0,
+    SC_ENV_META_KIND_SPECIAL_FUNCTIONS = 1
+};
+
+enum SCEnvSpecialFnType
+{
+    SC_ENV_SPECIAL_FN_TYPE_CUSTOM_ACCOUNT_CHECK_AUTH = 0
+};
+
+struct SCEnvSpecialFn
+{
+    SCEnvSpecialFnType fnType;
+    SCSymbol name;
 };
 
 union SCEnvMetaEntry switch (SCEnvMetaKind kind)
 {
 case SC_ENV_META_KIND_INTERFACE_VERSION:
     uint64 interfaceVersion;
+case SC_ENV_META_KIND_SPECIAL_FUNCTIONS:
+    SCEnvSpecialFn specialFns<>;
 };
 
 }
