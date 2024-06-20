@@ -23,6 +23,18 @@ struct ConfigSettingContractComputeV0
     uint32 txMemoryLimit;
 };
 
+// Settings for running the contract transactions in parallel.
+struct ConfigSettingContractParallelComputeV0
+{
+    // Maximum number of threads that can be used to apply a
+    // transaction set to close the ledger.
+    // This doesn't limit or defined the actual number of 
+    // threads used and instead only defines the minimum number
+    // of physical threads that a tier-1 validator has to support
+    // in order to not fall out of sync with the network.
+    int64 ledgerMaxParallelThreads;
+};
+
 // Ledger access settings for contracts.
 struct ConfigSettingContractLedgerCostV0
 {

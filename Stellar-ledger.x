@@ -201,6 +201,16 @@ enum TxSetComponentType
   TXSET_COMP_TXS_MAYBE_DISCOUNTED_FEE = 0
 };
 
+typedef TransactionEnvelope DependentTxCluster<>;
+typedef DependentTxCluster TxExecutionThread<>;
+typedef TxExecutionThread ParallelTxExecutionStage<>;
+
+struct ParallelTxsComponent
+{
+  int64* baseFee;
+  ParallelTxExecutionStage executionStages<>;
+};
+
 union TxSetComponent switch (TxSetComponentType type)
 {
 case TXSET_COMP_TXS_MAYBE_DISCOUNTED_FEE:
@@ -215,6 +225,8 @@ union TransactionPhase switch (int v)
 {
 case 0:
     TxSetComponent v0Components<>;
+case 1:
+    ParallelTxsComponent parallelTxsComponent;
 };
 
 // Transaction sets are the unit used by SCP to decide on transitions
