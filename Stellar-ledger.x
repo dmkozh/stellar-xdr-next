@@ -201,8 +201,7 @@ enum TxSetComponentType
   TXSET_COMP_TXS_MAYBE_DISCOUNTED_FEE = 0
 };
 
-typedef TransactionEnvelope DependentTxCluster<>;
-typedef DependentTxCluster TxExecutionThread<>;
+typedef TransactionEnvelope TxExecutionThread<>;
 typedef TxExecutionThread ParallelTxExecutionStage<>;
 
 struct ParallelTxsComponent
